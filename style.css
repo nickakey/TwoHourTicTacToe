@@ -1,0 +1,41 @@
+#gameboard {
+  margin: auto;
+  width: 350px;
+  height: 350px;
+  vertical-align: middle;
+  padding-top: 70px;
+}
+
+body {
+  background-color: black;
+}
+
+#turnDisplay {
+  color: lightgray;
+  margin: auto;
+  width: 350px;
+  margin: auto;
+  margin-top: 70px;
+}
+
+h1 { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 40px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 26.4px; }
+
+.space {
+  margin: 0px;
+  height: 100px;
+  width: 100px;
+  display: inline-block;
+  border: 5px solid black;
+}
+
+.empty {
+  background-color: grey;
+}
+
+.red {
+  background-color: red;
+}
+
+.yellow {
+  background-color: yellow;
+}
