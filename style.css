@@ -1,4 +1,19 @@
+#continueBox {
+  color: black;
+  left:50%;
+  top:50%;
+  transform: translate(-59%, -200%);
+  position:absolute;
+  background-color: lightgrey;
+  z-index: 2;
+  padding-right: 8px;
+  padding-left: 8px;
+  border: 5px solid lightgrey;
+  border-radius: 25px;
+}
+
 #gameboard {
+  position:relative;
   margin: auto;
   width: 350px;
   height: 350px;
@@ -8,9 +23,14 @@
 
 body {
   background-color: black;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-style: normal; font-variant: normal; font-weight: 700; line-height: 26.4px;
 }
 
-#turnDisplay {
+.hide {
+  display: none !important;
+}
+
+.turnDisplay {
   color: lightgray;
   margin: auto;
   width: 350px;
@@ -18,7 +38,25 @@ body {
   margin-top: 70px;
 }
 
+
+
 h1 { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 40px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 26.4px; }
+
+.yellowWin {
+  color: yellow;
+  margin: auto;
+  width: 350px;
+  margin: auto;
+  margin-top: 70px;
+}
+
+.redWin {
+  color: red;
+  margin: auto;
+  width: 350px;
+  margin: auto;
+  margin-top: 70px;
+}
 
 .space {
   margin: 0px;

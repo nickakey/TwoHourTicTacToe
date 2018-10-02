@@ -1,41 +1,3 @@
-var player = "yellow";
-var boardState = [["","",""],["","",""],["","",""]];
-var playingWithBot = false;
-
-function renderBoard(){
-  const turnDisplay = document.getElementById("turnDisplay");
-  turnDisplay.innerHTML = "It is " + player + "'s turn"
-  const gameBoardDiv = document.getElementById("gameboard");
-  for(let i = 0; i < 3; i++){
-    let newRow = document.createElement("div");
-    newRow.className = "row";
-    gameBoardDiv.appendChild(newRow);
-    for(let j = 0; j < 3; j++){
-      let space = document.createElement("div");
-      spaceDecorator(space, boardState[i][j], i, j);
-      newRow.appendChild(space);
-    }
-  }
-}
-
-function deleteBoard(){
-  const gameBoardDiv = document.getElementById("gameboard");
-  gameBoardDiv.innerHTML = '';
-}
-
-function spaceDecorator(space, type, i, j){
-   //@type is either string x, o, or "";
-   //@returns the same space with click handler and css tag
-   if(type === ""){
-     space.className = "empty space";
-   } else if (type === "red"){
-     space.className = "red space";
-   } else if (type === "yellow"){
-     space.className = "yellow space";
-   }
-   space.onclick = clickHandler(i, j);
-}
-
 function clickHandler(i, j){
   return function(){
       if(boardState[i][j] !== ""){
@@ -52,28 +14,39 @@ function clickHandler(i, j){
       renderBoard();
       const result = winChecker(boardState);
       if(result){
-        return setTimeout(function(){winHandler(result)}, 300)
+        return winHandler(result);
       }
       const catsGameResult = isCatsGame(boardState);
       if(catsGameResult){
-        return setTimeout(function(){catsGameHandler()}, 300)
+        return catsGameHandler()
       }
   }
 }
 
 function winHandler(winner){
-  alert(winner + " has won!");
+  const turnDisplay = document.getElementById("turnDisplay");
+  const continueBox = document.getElementById("continueBox");
+  continueBox.onclick = playAgainClicked;
+  turnDisplay.className = winner + "Win";
+  turnDisplay.innerHTML = winner + " has won!"
+  continueBox.className = "";
+}
+
+function playAgainClicked(){
+  continueBox.className = "hide";
+  console.log("play again clicked is being called")
   boardState = [["","",""],["","",""],["","",""]];
+  turnDisplay.className = "turnDisplay";
   deleteBoard();
   renderBoard();
 }
 
 function catsGameHandler(){
-  alert(" Cats Game!");
-  boardState = [["","",""],["","",""],["","",""]];
-  deleteBoard();
-  renderBoard();
-
+  const turnDisplay = document.getElementById("turnDisplay");
+  const continueBox = document.getElementById("continueBox");
+  continueBox.onclick = playAgainClicked;
+  turnDisplay.innerHTML = "Cat's Game!"
+  continueBox.className = "";
 }
 
 function isCatsGame(board){
@@ -203,6 +176,3 @@ function winChecker(board){
   if(checkMinorDiagonal(board)){winner = checkMinorDiagonal(board)}
   return winner;
 }
-
-
-renderBoard();
